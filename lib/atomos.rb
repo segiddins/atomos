@@ -12,6 +12,12 @@ module Atomos
 
     require 'tempfile'
 
+    # Ensure the destination is on the same device as tmpdir
+    if File.stat(tmpdir).dev != File.stat(File.dirname(dest)).dev
+      # If not, use the directory of the destination as the tmpdir.
+      tmpdir = File.dirname(dest)
+    end
+
     Tempfile.open(".atomos.#{File.basename(dest)}", tmpdir) do |tmpfile|
       if contents
         tmpfile << contents
