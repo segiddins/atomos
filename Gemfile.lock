@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    atomos (0.1.0)
+    atomos (0.1.1)
 
 GEM
   remote: https://rubygems.org/
