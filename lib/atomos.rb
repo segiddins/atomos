@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'atomos/version'
+require 'tmpdir'
 
 module Atomos
   module_function
