@@ -5,6 +5,9 @@ on:
     branches:
       - master
   pull_request:
+  schedule:
+    # run weekly
+    - cron: "0 0 * * 0"
 
 jobs:
   ruby-versions:
