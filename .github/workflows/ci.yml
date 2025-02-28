@@ -32,10 +32,28 @@ jobs:
           bundler-cache: true
 
       - name: Run tests
-        run: bundle exec rake
+        run: bundle exec rake spec
+
+  lint:
+    needs:
+      - ruby-versions
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ needs.ruby-versions.outputs.latest }}
+          bundler-cache: true
+
+      - name: Run tests
+        run: bundle exec rake rubocop
 
   all-tests:
-    needs: [test]
+    needs: [test, lint]
     runs-on: ubuntu-latest
     if: always()
     steps:
