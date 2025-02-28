@@ -23,7 +23,7 @@ jobs:
       - name: Install ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.5.0
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
       - name: Run tests
