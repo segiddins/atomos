@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'atomos'
-  spec.version       = File.read(File.expand_path('../VERSION', __FILE__))
+  spec.version       = File.read(File.expand_path('VERSION', __dir__))
   spec.authors       = ['Samuel Giddins']
   spec.email         = ['segiddins@segiddins.me']
 
