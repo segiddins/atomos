@@ -14,6 +14,10 @@ module Atomos
     tmpdir = Atomos.default_tmpdir_for_file(dest, tmpdir)
 
     require 'tempfile'
+    require 'fileutils'
+
+    original_mode = File.stat(dest).mode if File.exist?(dest)
+
     Tempfile.open(".atomos.#{File.basename(dest)}", tmpdir) do |tmpfile|
       if contents
         tmpfile << contents
