@@ -1,0 +1,26 @@
+# Mutant configuration for RSpec integration
+integration: rspec
+
+# Usage type for mutation testing
+usage: opensource
+
+# Paths to include for mutation testing
+includes:
+  - lib
+
+# Files to require
+requires:
+  - atomos
+
+# Coverage criteria
+coverage_criteria:
+  process_abort: true
+  timeout: true
+
+# Matcher settings
+matcher:
+  subjects:
+    - 'Atomos*'
+  ignore:
+    - Atomos::Version
+
