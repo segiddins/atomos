@@ -1,0 +1,20 @@
+integration: rspec
+
+usage: opensource
+
+includes:
+  - lib
+
+requires:
+  - atomos
+
+coverage_criteria:
+  process_abort: true
+  timeout: true
+
+matcher:
+  subjects:
+    - 'Atomos*'
+  ignore:
+    - Atomos::Version
+

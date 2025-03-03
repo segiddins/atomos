@@ -20,6 +20,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 3.1'
 
   spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'mutant', '~> 0.12.4'
+  spec.add_development_dependency 'mutant-rspec', '~> 0.12.4'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop'
