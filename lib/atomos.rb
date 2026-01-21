@@ -5,7 +5,7 @@ require 'atomos/version'
 module Atomos
   module_function
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def atomic_write(dest, contents = nil, tmpdir: nil, &block)
     unless contents.nil? ^ block.nil?
       raise ArgumentError, 'must provide either contents or a block'
@@ -14,6 +14,10 @@ module Atomos
     tmpdir = Atomos.default_tmpdir_for_file(dest, tmpdir)
 
     require 'tempfile'
+    require 'fileutils'
+
+    original_mode = File.stat(dest).mode if File.exist?(dest)
+
     Tempfile.open(".atomos.#{File.basename(dest)}", tmpdir) do |tmpfile|
       if contents
         tmpfile << contents
@@ -23,12 +27,14 @@ module Atomos
 
       tmpfile.close
 
+      FileUtils.chmod(original_mode, tmpfile.path) if original_mode
+
       File.rename(tmpfile.path, dest)
 
       retval
     end
   end
-  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   def self.default_tmpdir_for_file(dest, tmpdir)
     tmpdir ||= begin
